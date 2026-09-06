@@ -1,6 +1,14 @@
-# Global / Workspace Rules for Memory MCP Integration
+ Global / Workspace Rules for Antigravity
 
-## 🧠 常時 Memory MCP 読み込み・参照ルール (Mandatory Always-On Rule)
+ 全ファイルにおける絵文字・装飾記号の非使用ルール (No Decorative Symbols & Emojis Rule)
+
+- **全ファイルおよび出力における記号・絵文字の完全排除 (Absolute Rule)**:
+  - リポジトリ内のすべてのファイル（Markdown、コード、仕様書、タスク、対話ログ、日誌等）の作成・編集、およびユーザーへの回答出力において、絵文字や不要な装飾記号（隅付き括弧()、星印、菱形、特殊アイコン等）を一切使用してはならない。
+  - 視覚的な装飾記号に頼らず、標準的なMarkdown構文（プレーンな見出し、箇条書き、太字、インラインコード等）と正確な語彙・文章表現によってのみ構造化と可読性を確保すること。
+
+---
+
+ 常時 Memory MCP 読み込み・参照ルール (Mandatory Always-On Rule)
 
 1. **セッション・対話開始時の Memory 自動読み込み (Always Active)**:
    - ユーザーとのすべてのやり取り（特に個人嗜好、過去のプロジェクト `Anigma`、コンテキスト `3z_at` / サズアト、タスク管理に関わる内容）において、回答を構築する前に **必ず Memory MCP (`call_mcp_tool` 経由で `memory/read_graph` または `memory/search_nodes`) を実行し、ナレッジグラフを読み込んで最新のコンテキストを取得してください。**
@@ -8,23 +16,108 @@
 
 2. **Memory MCP への知識自動蓄積・更新**:
    - 会話中に得られたサズアト (3z_at) の新しい決定事項、技術的知見、プロジェクトの進捗、新しい嗜好・思想などは、セッション内または会話の区切りで Memory MCP (`create_entities`, `add_observations`, `create_relations`) を使用して自動的に更新・同期してください。
+   - 要約は具体的な発言そのものではなく、「どのような傾向・決定・知見が得られたか」を高レベルに整理して記録します。
 
-## 🔍 調査・検索の必須化ルール (Mandatory Search Rule)
+---
 
+ 調査・検索の必須化ルール (Mandatory Search Rule)
+
+- **返答前の事実確認・用語検索の徹底 (最優先絶対遵守)**:
+  - いかなる質問・返答であっても、回答を出力する前に「必ず」プロジェクト内の検索ツール（`grep_search` / `list_dir` / `view_file` 等）および必要に応じた用語検索を実行し、回答内容・認識・用語がプロジェクトの実態および事実と完全に一致しているかを検証してから返答してください。この検索ステップを省略した推測による返答は認められません。
 - **不明点・不確実な情報の必須検索 (Mandatory Search on Unknowns)**:
   - わからないこと、不確実な点、疑問点、最新の仕様や文脈について少しでも曖昧さがある場合は、推測や思い込みで回答・判断せず、**毎回必ず Web 検索 (`search_web`) やコードベース/ファイル検索などを実行し、ファクトと最新情報を確認した上で対応してください。**
 - **製品・ハードウェア・サービス情報の検索徹底 (Product Information Priority)**:
   - **マイク、ガジェット、ハードウェア、ソフトウェア製品、サービス仕様等の「製品系」の話題・選定・比較・推論においては、知識だけに頼らず毎回必ず最新の Web 検索 (`search_web`) を実行し、最新の製品情報、価格、評価、スペック、発売状況などの最新ファクトを確認した上で回答してください。**
 
+---
 
-
-## 📘 Notion Personal/glossary 自動更新ルール (Mandatory Notion Sync Rule)
+ Notion Personal/glossary 自動更新ルール (Mandatory Notion Sync Rule)
 
 - **新用語・知見の Notion 自動追加・同期**:
   - 会話中やプロジェクト進行において、新しい専門用語、概念、技術決定事項、アーキテクチャ思想、個人ルールなどが定義・提示された場合、Memory MCP への記録と並行して、Notion 上の `Personal/glossary` ページ（または Notion 側の対象グロッサリーページ）へ Notion MCP を使用して自動的に用語と解説を追記・同期してください。
 
-## 🏥 ヘルスケア・健康データ参照ルール (Healthcare Data Routing Rule)
+---
+
+ 対話ログ・日誌自動記録ルール (Mandatory Talk & Journal Logging Rule)
+
+- **セッション毎の対話ログ・決定プロセスの自動記録 (`Personal/talk/`)**:
+  - 対話やセッションの区切り、または主要な決定・作業が完了したタイミングで、その日・その回の対話トピック、議論内容、決定事項、実施した作業内容を [`Personal/talk/YYYY/MM/DD/talk-log.md`](Personal/talk/) へ自律的に作成・追記してください。
+  - ファイル作成・更新時は、必ず [`Personal/talk/INDEX.md`](Personal/talk/INDEX.md) の一覧早見表テーブルに日付・テーマ・種別・概要・リンクを追記・同期してください。
+- **日常の気づき・UXレビューの記録 (`Personal/journal/`)**:
+  - 生活の気づき、感情・思考、アプリやハードウェアの体験・UXレビューは [`Personal/journal/YYYY/MM/DD/journal.md`](Personal/journal/) および [`Personal/journal/INDEX.md`](Personal/journal/INDEX.md) へ記録・同期してください。
+- **Memory MCP へのナレッジ同期**:
+  - 対話から得られた決定事項、技術的知見、新しい好みなどは Memory MCP へ確実に反映してください。
+
+---
+
+ ヘルスケア・健康データ参照ルール (Healthcare Data Routing Rule)
 
 - **健康・生体・運動データの問い合わせ時の自動参照**:
-  - ユーザーから健康状態、睡眠、歩数、心拍数（RHR / 最高 / 最低 / 心拍ゾーン）、HRV（心拍変動）、ストレス、消費カロリー、運動・アクティビティ履歴などの「健康・ヘルスケア」に関する質問や話題があった場合は、必ず ディレクトリ配下のレポート（***/***/*.md`、年別 `Personal/Healthcare/YYYY/README.md`、月別 `Personal/Healthcare/YYYY/YYYY-MM/README.md`、日別 `Personal/Healthcare/YYYY/YYYY-MM/YYYY-MM-DD.md`）を参照し、該当ファイルへのリンクやデータを提示して回答を作成してください。
+  - ユーザーから健康状態、睡眠、歩数、心拍数（RHR / 最高 / 最低 / 心拍ゾーン）、HRV（心拍変動）、ストレス、消費カロリー、運動・アクティビティ履歴などの「健康・ヘルスケア」に関する質問や話題があった場合は、必ず `Personal/Healthcare/` ディレクトリ配下のレポート（`Personal/Healthcare/README.md`、年別 `Personal/Healthcare/YYYY/README.md`、月別 `Personal/Healthcare/YYYY/YYYY-MM/README.md`、日別 `Personal/Healthcare/YYYY/YYYY-MM/YYYY-MM-DD.md`）を参照し、該当ファイルへのリンクやデータを提示して回答を作成してください。
+
+---
+
+ ファイル編集・自律実行ルール (Autonomous File Operations Rule)
+
+- **事前承認不要での自律的なファイル変更・作成**:
+  - ファイルの作成、編集、更新、修正などの操作を行う際、ユーザーに都度事前確認や承認を求めず、自律的かつ積極的にファイルを直接変更・作成してください。
+
+---
+
+ Antigravity 絶対品質ルール (Absolute Quality Directives)
+
+1. **推測によるコード変更・アクセスの禁止 (Never Guess Code, Schemas, or Paths)**:
+   - 実装の詳細、変数名、プロトタイプ、スキーマ、ファイルパスを勝手に推測してコードを書いてはならない。
+   - 必ずツールを用いて一次情報（ソースコード・ファイル構成）を直接確認した上で実装・変更を行うこと。
+2. **エラーログ確認無しの診断禁止 (Inspect Logs Before Diagnosing)**:
+   - エラーやテスト失敗の理由を勝手に推測・診断してはならない。
+   - トラブル発生時は、最初に完全なエラーログやスタックトレースを取得・精読し、客観的な事実に基づいてのみ原因究明を行うこと。
+3. **表面的な対処療法・エラー隠蔽の禁止 (No Superficial Symptom Patches)**:
+   - 例外の揉み消し（空の `try/except`）、テストの削除・無効化、ダミーのフォールバック値の返却などによって「見かけ上の成功」を作ってはならない。
+   - 根本的な契約・データフローの破壊原因を特定し、本質的な修正を行うこと。
+4. **実機・コマンド検証前の成功宣言禁止 (Never Declare Success Without Verification)**:
+   - ファイルを編集しただけで「完了」「修正完了」と報告してはならない。
+   - 必ずビルド、テスト、または実行コマンドを実施し、問題なく動作することを確認（Empirical Runtime Verification）してから報告すること。
+5. **コマンドエラーの無視禁止 (Never Ignore Command Failures)**:
+   - ビルドやコマンド実行がエラー（Exit Code != 0）で終了した場合、それを無視して作業を進めてはならない。
+   - エラーを明確にログに記録し、修正・デバッグを継続するか原因・影響・未検証の範囲を明示すること。
+6. **デザイン・UXにおける品質維持 (Prioritize Visual Excellence & Aesthetics)**:
+   - Webアプリケーション等を構築する際、単なるMVPにとどまらず、洗練された配色・現代的なタイポグラフィ・マイクロアニメーションを用いたプレミアムなデザインを提供すること。
+
+---
+
+ Life ワークスペース管理ファイルとタスク運用
+
+ 管理ファイルと役割
+1. **`Personal/Personal.md`**: ユーザーの基本プロフィール、個人設定、中長期的な目標などの静的基本情報
+2. **`THOUGHTS.md`**: 日々のアイデア、技術メモ、頭の中のブレインダンプを書き出す動的思考スペース
+3. **`TASKS.md`**: 進行中の具体的なタスクを管理するToDoリスト
+
+ タスク管理・同期プロトコル
+- **タスクの自動抽出と登録**:
+  - ユーザーが `THOUGHTS.md` を更新したと報告した、またはチャットで相談を受けた場合、思考内容から「やるべきこと」を自動抽出して `life add` コマンドまたは `TASKS.md` へ登録する。
+  - タイトル（具体的なアクション）、優先度（`high`/`medium`/`low`）、期限、カテゴリ（`Dev`, `Personal`, `Idea` 等）を文脈から適切に設定する。
+- **外部連携の自動実行 (GitHub Issues & Google Tasks)**:
+  - タスクの追加や状態変更（`life done` 等）後は、設定されている場合 `life sync` コマンドを自動実行して同期する。
+- **進捗レポート**:
+  - 操作後は追加・更新されたタスクの詳細（ID、タイトル、優先度、期限）と全体の進捗を簡潔に報告する。
+
+---
+
+ 参照優先順位と厳密性
+
+ Life 資料の扱い
+- 個人文脈が必要な場合は `Personal/Personal.md`、`Personal/THOUGHTS.md`、`Personal/journal/INDEX.md`、`Personal/glossary/INDEX.md`、`Personal/notes/README.md`、`Personal/Healthcare/README.md` を起点に確認する。
+- `THOUGHTS.md` や AI による分析は、本人の確定した事実・意思と区別する。Garmin 集計は記録データであり、診断や健康状態の断定に使わない。
+
+ プロジェクト固有の参照優先順位
+- **GoLaLeM**: `projects/GoLaLeM/SPEC.md` を仕様の正本とする。未解決の仕様を暗黙に決定しない。`AI-README.md` と `Cloud-README.md` は対象機能の実装・運用確認時に参照する。
+- **プライバシー設計**: ユーザー所有の暗号化端末データと、推論サーバーに平文を保持しない方針を区別する。認証情報・API キーなどの平文をコード、ログ、メモリ、成果物に残さない。
+- **実績・ファクト記述**: Anigma、GoLaLeM、Share などの実績は、リポジトリ内で確認できる証拠の範囲だけを記載する。未検証の利用者数、性能、公開状況、成果を推測して補わない。
+- **公開・提出用文章**: Personal の公開・提出用文章では、公開先と提出意思を確認し、個人情報・健康情報・秘密情報を必要以上に含めない。
+
+ 厳密なコピープロトコル
+- 「同じ内容」「完全なコピー」と指定された場合は、元ファイルを変更せず、改行を含むバイト単位のコピーを作成する。
+- 完了報告の前に SHA-256 またはバイト比較で一致を確認し、一致しない場合は未完了として扱う。
+
 
