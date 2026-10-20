@@ -1,5 +1,9 @@
 # Task Management Rules for Antigravity
 
+参照:
+- Share 共通ルールはリポジトリルートの `AGENTS.md` を正本として参照してください。
+- このファイルは Antigravity のタスク運用向けルールを保持します。
+
 このプロジェクト (`Life`) は、ユーザーの思考・個人データ・タスクを一元管理するためのワークスペースです。
 AIアシスタント (Antigravity) は以下のルールと役割に従って行動してください。
 

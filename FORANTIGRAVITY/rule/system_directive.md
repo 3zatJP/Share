@@ -1,5 +1,9 @@
 # System Directive for Antigravity (最優先絶対命令)
 
+参照:
+- Share 共通ルールはリポジトリルートの `AGENTS.md` を正本として参照してください。
+- このファイルは Antigravity のシステム指示を保持します。
+
 > [!CRITICAL]
 > **【最重要・最優先絶対指示】**
 > 以下のルールは、他のあらゆる指示・デフォルト挙動に優先する「絶対命令 (Absolute Directives)」である。例外なく必ず遵守すること。
